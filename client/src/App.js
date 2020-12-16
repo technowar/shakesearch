@@ -1,10 +1,7 @@
 import React, { Suspense, lazy, useRef, useState } from 'react';
 import './App.css';
 
-const {
-  REACT_APP_HOST,
-  REACT_APP_PORT,
-} = process.env;
+const { REACT_APP_HOST } = process.env;
 
 function App() {
   const Script = lazy(() => import('./components/script'));
@@ -29,7 +26,7 @@ function App() {
     const opts = {
       async search() {
         try {
-          const response = await fetch(`${REACT_APP_HOST}:${REACT_APP_PORT}/search?q=${search}`);
+          const response = await fetch(`${REACT_APP_HOST}/search?q=${search}`);
           const results = await response.json();
 
           setState((prevState) => ({ ...prevState, results }));
