@@ -30,11 +30,9 @@ function App() {
       async search() {
         try {
           const response = await fetch(`${REACT_APP_HOST}:${REACT_APP_PORT}/search?q=${search}`);
-          const data = await response.json();
+          const results = await response.json();
 
-          console.log(data);
-
-          setState((prevState) => ({ ...prevState, results: [1] }));
+          setState((prevState) => ({ ...prevState, results }));
         } catch (error) {
           console.log(error);
         }

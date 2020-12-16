@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createElement } from 'react';
 import './index.css';
 
 function Script(props) {
@@ -9,7 +9,19 @@ function Script(props) {
   return (
     <div className="script">
       <div className="content content-show">
-        <h1>SCRIPT</h1>
+        <div className="text">
+          {results.map((result, resultIdx) => (
+            createElement('div', {
+              className: 'section',
+              key: resultIdx,
+            }, result.split('\n').map((item, itemIdx) => item.trim().length ? (
+              createElement('p', {
+                className: /^[^a-z]*$/.test(item) ? 'bold item' : 'item',
+                key: itemIdx,
+              }, item)
+            ) : null))
+          ))}
+        </div>
       </div>
     </div>
   );
