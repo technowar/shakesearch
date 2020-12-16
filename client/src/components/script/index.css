@@ -1,0 +1,40 @@
+.script {
+  display: flex;
+  height: 100%;;
+  justify-content: flex-end;
+}
+
+.content {
+  border: 1px solid red;
+  opacity: 1;
+  position: relative;
+  top: 0;
+  width: 50%;
+}
+
+.content-show {
+  animation: content-show 1s forwards;
+  -webkit-animation: content-show 1s forwards;
+}
+
+@keyframes content-show {
+  0% {
+    opacity: 0;
+    top: 200px;
+  }
+  100% {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+@-webkit-keyframes content-show {
+  0% {
+    opacity: 0;
+    top: 200px;
+  }
+  100% {
+    opacity: 1;
+    top: 0;
+  }
+}

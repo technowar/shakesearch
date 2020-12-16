@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { Suspense, lazy, useRef, useState } from 'react';
 import './App.css';
 
 const {
@@ -7,12 +7,13 @@ const {
 } = process.env;
 
 function App() {
+  const Script = lazy(() => import('./components/script'));
   const inputRef = useRef(null);
   const [{
     results,
     search,
   }, setState] = useState({
-    results: false,
+    results: [],
     search: '',
   });
 
@@ -33,16 +34,16 @@ function App() {
 
           console.log(data);
 
-          setState((prevState) => ({ ...prevState, results: true }));
+          setState((prevState) => ({ ...prevState, results: [1] }));
         } catch (error) {
           console.log(error);
         }
       },
       input() {
-        if (results && search) {
+        if (results.length && search) {
           inputRef.current.blur();
           setState((prevState) => ({
-            results: false,
+            results: [],
             search: '',
           }));
         }
@@ -58,7 +59,7 @@ function App() {
         <span className="title">Shakesearch</span>
       </header>
       <div className="index">
-        <div className="search">
+        <div className={results.length ? 'search search-hide' : 'search search-show'}>
           <div className="search-bar">
             <img
               alt="search"
@@ -74,7 +75,7 @@ function App() {
               onChange={onChange}
               onClick={() => onClick('input')}
             />
-            {(!results && search) && (
+            {(!results.length && search) && (
               <img
                 alt="arrow"
                 className="arrow-logo"
@@ -85,15 +86,20 @@ function App() {
           </div>
           <img
             alt="line"
-            className={results ? 'line-logo line-hide' : 'line-logo line-show'}
+            className={results.length ? 'line-logo line-hide' : 'line-logo line-show'}
             src="/images/line.svg"
           />
         </div>
         <img
           alt="shakespeare"
-          className={results ? 'shakespeare-logo shakespeare-hide' : 'shakespeare-logo shakespeare-show'}
+          className={results.length ? 'shakespeare-logo shakespeare-hide' : 'shakespeare-logo shakespeare-show'}
           src="/images/shakespeare.svg"
         />
+        {results.length ? (
+          <Suspense fallback={null}>
+            <Script results={results} />
+          </Suspense>
+        ) : null}
       </div>
     </div>
   );
