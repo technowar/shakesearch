@@ -1,0 +1,61 @@
+@font-face {
+  font-family: 'Mrs Eaves OT';
+  src: url('./assets/fonts/Mrs-Eaves-OT-Regular.ttf') format('opentype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Amethysta';
+  src: url('./assets/fonts/Amethysta-Regular.ttf') format('opentype');
+  font-weight: 400;
+}
+
+html, body {
+  background-color: #e1ddd7;
+  height: 100%;
+}
+
+body {
+  font-family: 'Mrs Eaves OT', 'Amethysta', sans-serif;
+  margin: 0 auto;
+  max-width: 1440px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input {
+  background-image: none;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+
+*:focus {
+  outline: none;
+}
+
+::-moz-placeholder {
+  color: #8A8070;
+  font-family: Mrs Eaves OT;
+}
+
+::-webkit-input-placeholder {
+  color: #8A8070;
+  font-family: Mrs Eaves OT;
+}
+
+:-moz-placeholder {
+  color: #8A8070;
+  font-family: Mrs Eaves OT;
+}
+
+:-ms-input-placeholder {
+  color: #8A8070;
+  font-family: Mrs Eaves OT;
+}
+
+#root, .container {
+  height: 100%;
+}

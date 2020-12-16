@@ -1,0 +1,165 @@
+.header {
+  padding: 20px 0;
+}
+
+.title {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 26px;
+  opacity: 0.3;
+}
+
+.line-logo {
+  opacity: 1;
+  padding: 20px 0 0;
+  position: relative;
+  right: 0;
+}
+
+.line-hide {
+  animation: line-hide 1s forwards;
+  -webkit-animation: line-hide 1s forwards;
+}
+
+.line-show {
+  animation: line-show 1s forwards;
+  -webkit-animation: line-show 1s forwards;
+}
+
+.search {
+  align-items: center;
+  bottom: 50%;
+  flex-direction: column;
+  display: flex;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%,0);
+  z-index: 1;
+}
+
+.search-bar {
+  display: flex;
+  min-width: 565px;
+  max-width: 565px;
+}
+
+.search-input {
+  color: #50493e;
+  font-family: Amethysta;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 42px;
+  padding: 0 30px;
+}
+
+.arrow-logo,
+.search-logo {
+  width: 38px;
+}
+
+.shakespeare-logo {
+  bottom: 0;
+  opacity: 1;
+  position: absolute;
+  right: 0;
+  width: 499px;
+}
+
+.shakespeare-hide {
+  animation: shakespeare-hide 1s forwards;
+  -webkit-animation: shakespeare-hide 1s forwards;
+}
+
+.shakespeare-show {
+  animation: shakespeare-show 1s forwards;
+  -webkit-animation: shakespeare-show 1s forwards;
+}
+
+@keyframes line-show {
+  0% {
+    opacity: 0;
+    right: 200px;
+  }
+  100% {
+    opacity: 1;
+    right: 0;
+  }
+}
+
+@keyframes line-hide {
+  0% {
+    opacity: 1;
+    right: 0;
+  }
+  100% {
+    opacity: 0;
+    right: 200px;
+  }
+}
+
+@keyframes shakespeare-show {
+  0% {
+    opacity: 0;
+    right: -200px;
+  }
+  100% {
+    opacity: 1;
+    right: 0;
+  }
+}
+
+@keyframes shakespeare-hide {
+  0% {
+    opacity: 1;
+    right: 0;
+  }
+  100% {
+    opacity: 0;
+    right: -200px;
+  }
+}
+
+@-webkit-keyframes line-show {
+  0% {
+    opacity: 0;
+    right: 200px;
+  }
+  100% {
+    opacity: 1;
+    right: 0;
+  }
+}
+
+@-webkit-keyframes line-hide {
+  0% {
+    opacity: 1;
+    right: 0;
+  }
+  100% {
+    opacity: 0;
+    right: 200px;
+  }
+}
+
+@-webkit-keyframes shakespeare-show {
+  0% {
+    opacity: 0;
+    right: -200px;
+  }
+  100% {
+    opacity: 1;
+    right: 0;
+  }
+}
+
+@-webkit-keyframes shakespeare-hide {
+  0% {
+    opacity: 1;
+    right: 0;
+  }
+  100% {
+    opacity: 0;
+    right: -200px;
+  }
+}
