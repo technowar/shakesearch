@@ -117,7 +117,7 @@ function App() {
         />
         {results.length ? (
           <Suspense fallback={null}>
-            <Script results={results} />
+            <Script results={results} search={search} />
           </Suspense>
         ) : null}
       </div>

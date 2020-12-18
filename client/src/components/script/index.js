@@ -1,10 +1,12 @@
 import React from 'react';
 import { AutoSizer, CellMeasurer, CellMeasurerCache, List } from 'react-virtualized';
+import utils from '../../utils';
 import './index.css';
 
 function Script(props) {
   const {
     results,
+    search,
   } = props;
   const cache = new CellMeasurerCache({
     fixedWidth: true,
@@ -22,8 +24,17 @@ function Script(props) {
       >
         <div className="section" style={style}>
           {results[index].split('\n').map((result, resultIdx) => (
-            <p className={/^[^a-z]*$/.test(result) ? 'bold item' : 'item'} key={resultIdx}>{result}</p>
+            <span
+              className="item"
+              key={resultIdx}
+              dangerouslySetInnerHTML={{ __html: utils(result, search) }}
+            />
           ))}
+          {/*
+          {results[index].split('\n').map((result, resultIdx) => (
+            <span className={/^[^a-z]*$/.test(result) ? 'bold item' : 'item'} key={resultIdx}>{result}</span>
+          ))}
+          */}
         </div>
       </CellMeasurer>
     );
