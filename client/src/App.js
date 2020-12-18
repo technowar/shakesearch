@@ -1,7 +1,6 @@
 import React, { Suspense, lazy, useRef, useState } from 'react';
+import services from './services';
 import './App.css';
-
-const { REACT_APP_HOST } = process.env;
 
 function App() {
   const Script = lazy(() => import('./components/script'));
@@ -16,18 +15,46 @@ function App() {
 
   function onChange(evt) {
     const {
-      value,
-    } = evt.target;
+      key,
+      target: {
+        value,
+      },
+    } = evt;
+    const opts = {
+      async enter() {
+        try {
+          const results = await services(search);
+
+          if (!Array.isArray(results)) {
+            throw results;
+          }
+
+          inputRef.current.blur();
+          setState((prevState) => ({ ...prevState, results }));
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      escape() {
+        inputRef.current.value = '';
+      },
+      defaults() {},
+    };
 
     setState((prevState) => ({ ...prevState, search: value }));
+
+    return (opts[key.toLowerCase()] || opts['defaults'])();
   }
 
   function onClick(type) {
     const opts = {
       async search() {
         try {
-          const response = await fetch(`${REACT_APP_HOST}/search?q=${search}`);
-          const results = await response.json();
+          const results = await services(search);
+
+          if (!Array.isArray(results)) {
+            throw results;
+          }
 
           setState((prevState) => ({ ...prevState, results }));
         } catch (error) {
@@ -36,10 +63,9 @@ function App() {
       },
       input() {
         if (results.length && search) {
-          inputRef.current.blur();
           setState((prevState) => ({
+            ...prevState,
             results: [],
-            search: '',
           }));
         }
       },
@@ -66,8 +92,7 @@ function App() {
               type="text"
               placeholder="What are thee looking f'r?"
               ref={inputRef}
-              value={search}
-              onChange={onChange}
+              onKeyUp={onChange}
               onClick={() => onClick('input')}
             />
             {(!results.length && search) && (
